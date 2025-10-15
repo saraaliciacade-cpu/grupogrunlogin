@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { User } from "lucide-react";
+import { User, LockKeyhole } from "lucide-react";
 import PasswordInput from "@/components/PasswordInput";
 
 const Login = () => {
@@ -173,8 +173,9 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowForgotPassword(true)}
-              className="text-sm text-[hsl(var(--grun-neutral-500))] underline hover:text-[hsl(var(--grun-primary-600))] transition-colors"
+              className="text-sm text-[hsl(var(--grun-neutral-500))] underline hover:text-[hsl(var(--grun-primary-600))] transition-colors inline-flex items-center gap-1.5"
             >
+              <LockKeyhole className="w-4 h-4" />
               Olvidé mi contraseña
             </button>
           </div>
