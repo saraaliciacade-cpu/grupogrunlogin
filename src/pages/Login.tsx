@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { User, LockKeyhole } from "lucide-react";
+import { User, LockKeyhole, ArrowLeft } from "lucide-react";
 import PasswordInput from "@/components/PasswordInput";
 
 const Login = () => {
@@ -118,8 +118,9 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowForgotPassword(false)}
-              className="w-full text-sm text-[hsl(var(--grun-neutral-500))] underline hover:text-[hsl(var(--grun-primary-600))] transition-colors"
+              className="w-full text-sm text-[hsl(var(--grun-neutral-500))] underline hover:text-[hsl(var(--grun-primary-600))] transition-colors inline-flex items-center justify-center gap-1.5"
             >
+              <ArrowLeft className="w-4 h-4" />
               Volver al inicio de sesión
             </button>
           </form>
