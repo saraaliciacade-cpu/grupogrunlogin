@@ -22,12 +22,29 @@ const Login = () => {
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        toast("Corrige la contraseña o nombre de usuario", {
+          icon: "❓",
+          style: {
+            background: "hsl(var(--grun-neutral-100))",
+            color: "hsl(var(--grun-neutral-700))",
+            border: "1px solid hsl(var(--grun-neutral-200))",
+          },
+        });
+        return;
+      }
 
       toast.success("Inicio de sesión exitoso");
-      navigate("/");
+      navigate("/dashboard");
     } catch (error: any) {
-      toast.error(error.message || "Error al iniciar sesión");
+      toast("Corrige la contraseña o nombre de usuario", {
+        icon: "❓",
+        style: {
+          background: "hsl(var(--grun-neutral-100))",
+          color: "hsl(var(--grun-neutral-700))",
+          border: "1px solid hsl(var(--grun-neutral-200))",
+        },
+      });
     } finally {
       setIsLoading(false);
     }
@@ -36,7 +53,14 @@ const Login = () => {
   const handleForgotPassword = async (e: FormEvent) => {
     e.preventDefault();
     if (!email) {
-      toast.error("Por favor ingresa tu correo electrónico");
+      toast("Por favor ingresa tu correo electrónico", {
+        icon: "❓",
+        style: {
+          background: "hsl(var(--grun-neutral-100))",
+          color: "hsl(var(--grun-neutral-700))",
+          border: "1px solid hsl(var(--grun-neutral-200))",
+        },
+      });
       return;
     }
 
@@ -51,7 +75,14 @@ const Login = () => {
       toast.success("Te hemos enviado un enlace para restablecer tu contraseña");
       setShowForgotPassword(false);
     } catch (error: any) {
-      toast.error(error.message || "Error al enviar el enlace");
+      toast("Error al enviar el enlace", {
+        icon: "❓",
+        style: {
+          background: "hsl(var(--grun-neutral-100))",
+          color: "hsl(var(--grun-neutral-700))",
+          border: "1px solid hsl(var(--grun-neutral-200))",
+        },
+      });
     } finally {
       setIsLoading(false);
     }
