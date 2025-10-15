@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { User, LockKeyhole, ArrowLeft } from "lucide-react";
 import PasswordInput from "@/components/PasswordInput";
+import grupoGrunLogo from "@/assets/grupo-grun-logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -96,14 +97,11 @@ const Login = () => {
           <div className="absolute -top-px left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-sm"></div>
           
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-3xl font-semibold mb-2 bg-gradient-to-br from-[hsl(var(--grun-primary-600))] to-[hsl(var(--grun-primary-700))] bg-clip-text text-transparent italic">
-              Grupo Grün
-            </h1>
-            <div className="flex items-center justify-center gap-2 text-base text-[hsl(var(--grun-neutral-500))]">
-              <span className="w-8 h-px bg-gradient-to-r from-transparent via-[hsl(var(--grun-primary-600))] to-transparent"></span>
-              <span>Servicios Financieros</span>
-              <span className="w-8 h-px bg-gradient-to-r from-transparent via-[hsl(var(--grun-primary-600))] to-transparent"></span>
-            </div>
+            <img 
+              src={grupoGrunLogo} 
+              alt="Grupo Grün Servicios Financieros" 
+              className="h-20 mx-auto"
+            />
           </div>
 
           <div className="mb-6 text-center">
@@ -167,14 +165,11 @@ const Login = () => {
         <div className="absolute -top-px left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-sm"></div>
         
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-3xl font-semibold mb-2 bg-gradient-to-br from-[hsl(var(--grun-primary-600))] to-[hsl(var(--grun-primary-700))] bg-clip-text text-transparent italic">
-            Grupo Grün
-          </h1>
-          <div className="flex items-center justify-center gap-2 text-base text-[hsl(var(--grun-neutral-500))]">
-            <span className="w-8 h-px bg-gradient-to-r from-transparent via-[hsl(var(--grun-primary-600))] to-transparent"></span>
-            <span>Servicios Financieros</span>
-            <span className="w-8 h-px bg-gradient-to-r from-transparent via-[hsl(var(--grun-primary-600))] to-transparent"></span>
-          </div>
+          <img 
+            src={grupoGrunLogo} 
+            alt="Grupo Grün Servicios Financieros" 
+            className="h-20 mx-auto"
+          />
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
