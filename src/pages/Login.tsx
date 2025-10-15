@@ -100,7 +100,7 @@ const Login = () => {
             <img 
               src={grupoGrunLogo} 
               alt="Grupo Grün Servicios Financieros" 
-              className="h-24 mx-auto"
+              className="h-28 mx-auto"
             />
           </div>
 
@@ -168,7 +168,7 @@ const Login = () => {
           <img 
             src={grupoGrunLogo} 
             alt="Grupo Grün Servicios Financieros" 
-            className="h-24 mx-auto"
+            className="h-28 mx-auto"
           />
         </div>
 
