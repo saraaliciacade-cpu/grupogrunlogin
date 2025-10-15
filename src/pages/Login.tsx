@@ -2,7 +2,8 @@ import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { User, Lock } from "lucide-react";
+import { User } from "lucide-react";
+import PasswordInput from "@/components/PasswordInput";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 text-center">
             <h2 className="text-xl font-semibold text-[hsl(var(--grun-neutral-700))] mb-2">
               Olvidé mi contraseña
             </h2>
@@ -161,22 +162,14 @@ const Login = () => {
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm font-medium text-[hsl(var(--grun-primary-600))]">
-              <Lock className="w-4 h-4" />
-              Contraseña
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-12 px-4 text-base border-2 border-[hsl(var(--grun-neutral-200))] rounded-xl bg-[hsl(var(--grun-neutral-50))] transition-all focus:outline-none focus:border-[hsl(var(--grun-primary-600))] focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.06),0_0_0_3px_rgba(5,150,105,0.1),0_4px_6px_rgba(0,0,0,0.1)] focus:-translate-y-px placeholder:text-[hsl(var(--grun-neutral-400))]"
-              disabled={isLoading}
-              required
-            />
-          </div>
+          <PasswordInput
+            value={password}
+            onChange={setPassword}
+            disabled={isLoading}
+            required
+          />
 
-          <div className="text-left -mt-2">
+          <div className="text-center -mt-2">
             <button
               type="button"
               onClick={() => setShowForgotPassword(true)}
