@@ -37,7 +37,7 @@ const SplashScreen = ({ onFinish }: SplashScreenProps) => {
       <img
         src={splashLogo}
         alt="Grupo Grün Servicios Financieros"
-        className="w-72 h-auto object-contain"
+        className="w-48 md:w-72 h-auto object-contain"
       />
     </div>
   );
