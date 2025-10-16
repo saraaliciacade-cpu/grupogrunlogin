@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import grupoGrunLogo from "@/assets/grupo-grun-logo.png";
+import splashLogo from "@/assets/splash-logo.png";
 
 interface SplashScreenProps {
   onFinish: () => void;
@@ -35,9 +35,9 @@ const SplashScreen = ({ onFinish }: SplashScreenProps) => {
       }`}
     >
       <img
-        src={grupoGrunLogo}
+        src={splashLogo}
         alt="Grupo Grün Servicios Financieros"
-        className="w-40 h-auto object-contain"
+        className="w-72 h-auto object-contain"
       />
     </div>
   );
