@@ -49,23 +49,33 @@ const PasswordInput = ({ value, onChange, disabled, required }: PasswordInputPro
           type="text"
           value={displayValue}
           onChange={(e) => {
-            const newValue = e.target.value.replace(/•/g, "");
-            if (newValue.length <= value.length) {
-              onChange(value.slice(0, value.length - (displayValue.length - e.target.value.length)));
-            } else {
-              onChange(value + newValue);
+            const newDisplayValue = e.target.value;
+            const lengthDiff = newDisplayValue.length - displayValue.length;
+            
+            if (lengthDiff < 0) {
+              // User deleted characters
+              onChange(value.slice(0, value.length + lengthDiff));
+            } else if (lengthDiff > 0 && value.length < 12) {
+              // User added characters (up to 12)
+              const newChars = newDisplayValue.replace(/•/g, "");
+              const charsToAdd = newChars.slice(Math.max(0, newChars.length - lengthDiff));
+              onChange(value + charsToAdd);
             }
           }}
           onPaste={(e) => {
             e.preventDefault();
             const pastedText = e.clipboardData.getData("text");
-            onChange(value + pastedText);
+            const remainingSpace = 12 - value.length;
+            if (remainingSpace > 0) {
+              onChange(value + pastedText.slice(0, remainingSpace));
+            }
           }}
           className="w-full h-12 px-4 text-base border-2 border-[hsl(var(--grun-neutral-200))] rounded-xl bg-[hsl(var(--grun-neutral-50))] transition-all focus:outline-none focus:border-[hsl(var(--grun-primary-600))] focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.06),0_0_0_3px_rgba(15,77,32,0.1),0_4px_6px_rgba(0,0,0,0.1)] focus:-translate-y-px placeholder:text-[hsl(var(--grun-neutral-400))]"
           placeholder="**********"
           disabled={disabled}
           required={required}
           autoComplete="off"
+          maxLength={12}
         />
       </div>
     </div>
