@@ -14,12 +14,15 @@ const queryClient = new QueryClient();
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
 
+  if (showSplash) {
+    return <SplashScreen onFinish={() => setShowSplash(false)} />;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
