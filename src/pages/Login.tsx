@@ -8,7 +8,7 @@ import grupoGrunLogo from "@/assets/grupo-grun-logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -17,27 +17,17 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+    // Simulate a brief loading period
+    await new Promise(resolve => setTimeout(resolve, 800));
 
-      if (error) {
-        toast("Corrige la contraseña o nombre de usuario", {
-          icon: "❓",
-          style: {
-            background: "hsl(var(--grun-neutral-100))",
-            color: "hsl(var(--grun-neutral-700))",
-            border: "1px solid hsl(var(--grun-neutral-200))",
-          },
-        });
-        return;
-      }
-
+    if (username === "ignacioguerra" && password === "grupogrun") {
       toast.success("Inicio de sesión exitoso");
+      // Keep loading state to show loading page
+      await new Promise(resolve => setTimeout(resolve, 1500));
       navigate("/dashboard");
-    } catch (error: any) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
       toast("Corrige la contraseña o nombre de usuario", {
         icon: "❓",
         style: {
@@ -46,15 +36,13 @@ const Login = () => {
           border: "1px solid hsl(var(--grun-neutral-200))",
         },
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const handleForgotPassword = async (e: FormEvent) => {
     e.preventDefault();
-    if (!email) {
-      toast("Por favor ingresa tu correo electrónico", {
+    if (!username) {
+      toast("Por favor ingresa tu nombre de usuario", {
         icon: "❓",
         style: {
           background: "hsl(var(--grun-neutral-100))",
@@ -66,28 +54,31 @@ const Login = () => {
     }
 
     setIsLoading(true);
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
-      });
-
-      if (error) throw error;
-
-      toast.success("Te hemos enviado un enlace para restablecer tu contraseña");
-      setShowForgotPassword(false);
-    } catch (error: any) {
-      toast("Error al enviar el enlace", {
-        icon: "❓",
-        style: {
-          background: "hsl(var(--grun-neutral-100))",
-          color: "hsl(var(--grun-neutral-700))",
-          border: "1px solid hsl(var(--grun-neutral-200))",
-        },
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    toast.success("Contacta al administrador para restablecer tu contraseña");
+    setShowForgotPassword(false);
+    setIsLoading(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[hsl(var(--grun-neutral-50))]">
+        <div className="text-center space-y-6">
+          <img 
+            src={grupoGrunLogo} 
+            alt="Grupo Grün" 
+            className="h-32 w-auto mx-auto object-contain animate-pulse"
+          />
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-2 h-2 bg-[hsl(var(--grun-primary-600))] rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+            <div className="w-2 h-2 bg-[hsl(var(--grun-primary-600))] rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+            <div className="w-2 h-2 bg-[hsl(var(--grun-primary-600))] rounded-full animate-bounce"></div>
+          </div>
+          <p className="text-[hsl(var(--grun-neutral-600))] text-sm font-medium">Cargando...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (showForgotPassword) {
     return (
@@ -117,12 +108,12 @@ const Login = () => {
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-sm font-medium text-[hsl(var(--grun-primary-600))]">
                 <User className="w-4 h-4" />
-                Email
+                Usuario
               </label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="w-full h-12 px-4 text-base border-2 border-[hsl(var(--grun-neutral-200))] rounded-xl bg-[hsl(var(--grun-neutral-50))] transition-all focus:outline-none focus:border-[hsl(var(--grun-primary-600))] focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.06),0_0_0_3px_rgba(5,150,105,0.1),0_4px_6px_rgba(0,0,0,0.1)] focus:-translate-y-px placeholder:text-[hsl(var(--grun-neutral-400))]"
                 disabled={isLoading}
                 required
@@ -179,11 +170,11 @@ const Login = () => {
               Usuario
             </label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full h-12 px-4 text-base border-2 border-[hsl(var(--grun-neutral-200))] rounded-xl bg-[hsl(var(--grun-neutral-50))] transition-all focus:outline-none focus:border-[hsl(var(--grun-primary-600))] focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.06),0_0_0_3px_rgba(5,150,105,0.1),0_4px_6px_rgba(0,0,0,0.1)] focus:-translate-y-px placeholder:text-[hsl(var(--grun-neutral-400))]"
-              placeholder="Administrador"
+              placeholder="ignacioguerra"
               disabled={isLoading}
               required
             />
