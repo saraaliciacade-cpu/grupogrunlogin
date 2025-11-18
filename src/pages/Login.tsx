@@ -174,7 +174,7 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full h-12 px-4 text-base border-2 border-[hsl(var(--grun-neutral-200))] rounded-xl bg-[hsl(var(--grun-neutral-50))] transition-all focus:outline-none focus:border-[hsl(var(--grun-primary-600))] focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.06),0_0_0_3px_rgba(5,150,105,0.1),0_4px_6px_rgba(0,0,0,0.1)] focus:-translate-y-px placeholder:text-[hsl(var(--grun-neutral-400))]"
-              placeholder="ignacioguerra"
+              placeholder="Nombre de Usuario"
               disabled={isLoading}
               required
             />
